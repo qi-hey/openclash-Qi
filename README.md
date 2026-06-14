@@ -11,6 +11,13 @@ OpenClash settings we use locally:
 - `tun` gateway mode
 - fake-ip DNS with AI/OpenAI/Claude/Google DNS policy through `🚀 手动选择`
 - maintained Aethersailor rule-provider URLs through `api.asailor.org`
+- explicit AI service rules for Codex, ChatGPT, Claude, Gemini, Pi, Hermes/Nous,
+  Copilot, and OpenRouter
+- a dedicated `🛒 Google Play` policy before `google-cn` so mobile Play Store
+  downloads are less likely to be sent direct by mistake
+
+This repository is public. It intentionally does not include subscription URLs,
+tokens, generated provider YAML files, or local subscription text files.
 
 ## Subconverter remote config
 
@@ -26,16 +33,31 @@ The config references this base YAML:
 https://raw.githubusercontent.com/qi-hey/openclash-Qi/main/base/openclash-meta-gateway.yaml
 ```
 
-## Example
+## Remote Config URL
 
-Replace `YOUR_SUB_URL` with your subscription URL:
+Use this as the remote config / `config` URL in your converter:
 
 ```text
-https://subconverter.example/sub?target=clash&url=YOUR_SUB_URL&config=https%3A%2F%2Fraw.githubusercontent.com%2Fqi-hey%2Fopenclash-Qi%2Fmain%2Fcfg%2FCustom_Clash_Qi.ini
+https://raw.githubusercontent.com/qi-hey/openclash-Qi/main/cfg/Custom_Clash_Qi.ini
 ```
 
+Keep your real subscription URL only in your local converter or OpenClash setup.
 After conversion, import the generated YAML into OpenClash and use the Meta /
 Mihomo kernel.
+
+## AI And Google Play Notes
+
+The template keeps the original OpenClash/Aethersailor rule structure, then adds
+explicit fallback domains before broad geosite rules:
+
+- `🤖 ChatGPT`: OpenAI, ChatGPT, Codex-adjacent OpenAI assets, Sora
+- `🤖 Copilot`: GitHub Copilot and Microsoft Copilot
+- `🤖 AI服务`: Claude/Anthropic, Gemini/AI Studio, Pi/Inflection,
+  Hermes/Nous, OpenRouter
+- `🛒 Google Play`: Play Store API, app assets, and Google download CDN domains
+
+For the implementation notes and the no-token publishing rule, see
+[`docs/strategy-notes.md`](docs/strategy-notes.md).
 
 ## Notes
 

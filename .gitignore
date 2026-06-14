@@ -1,0 +1,13 @@
+# Local subscription material. Never commit real subscription URLs or tokens.
+subs.txt
+suss.txt
+*.subs.txt
+*.subscription.txt
+*.secret.*
+*.private.*
+
+# Locally generated OpenClash outputs that may contain proxy-provider URLs.
+openclash-provider-*.yaml
+openclash-merged-*.yaml
+*provider*local*.yaml
+*merged*local*.yaml

@@ -1,0 +1,201 @@
+mixed-port: 7890
+redir-port: 7892
+tproxy-port: 7895
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+
+sniffer:
+  enable: true
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "dlg.io.mi.com"
+    - "+.push.apple.com"
+    - "+.googlevideo.com"
+
+tun:
+  enable: true
+  stack: mixed
+  mtu: 1492
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  cache-algorithm: arc
+  ipv6: false
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "+.localdomain"
+    - "localhost.ptlogin2.qq.com"
+    - "time.windows.com"
+    - "time.apple.com"
+    - "time.android.com"
+    - "+.googleapis.cn"
+    - "+.xn--ngstr-lra8j.com"
+    - "+.ntp.org.cn"
+    - "+.pool.ntp.org"
+
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+    - 8.8.8.8
+
+  nameserver-policy:
+    "geosite:private,cn,apple-cn,microsoft@cn,steam@cn":
+      - 223.5.5.5
+      - 119.29.29.29
+    "+.cn":
+      - 223.5.5.5
+      - 119.29.29.29
+    "+.中国":
+      - 223.5.5.5
+      - 119.29.29.29
+    "+.公司":
+      - 223.5.5.5
+      - 119.29.29.29
+    "+.网络":
+      - 223.5.5.5
+      - 119.29.29.29
+    "+.openai.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.chatgpt.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.anthropic.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.claude.ai":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.google.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.googleapis.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.googleapis.cn":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.gstatic.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.gvt1.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.gvt2.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.gvt3.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.googleusercontent.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.ggpht.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.android.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "+.xn--ngstr-lra8j.com":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+    "geosite:geolocation-!cn":
+      - "https://1.1.1.1/dns-query#🚀 手动选择"
+      - "https://dns.google/dns-query#🚀 手动选择"
+
+  nameserver:
+    - "https://dns.alidns.com/dns-query"
+    - "https://doh.pub/dns-query"
+    - "https://1.1.1.1/dns-query#🚀 手动选择"
+    - "https://dns.google/dns-query#🚀 手动选择"
+
+  fallback:
+    - "https://1.1.1.1/dns-query#🚀 手动选择"
+    - "https://dns.google/dns-query#🚀 手动选择"
+
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+    - 8.8.8.8
+
+  direct-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+  direct-nameserver-follow-policy: true
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    domain:
+      - "+.openai.com"
+      - "+.chatgpt.com"
+      - "+.anthropic.com"
+      - "+.claude.ai"
+      - "+.google.com"
+      - "+.googleapis.com"
+      - "+.googleapis.cn"
+      - "+.gstatic.com"
+      - "+.gvt1.com"
+      - "+.gvt2.com"
+      - "+.gvt3.com"
+      - "+.googleusercontent.com"
+      - "+.ggpht.com"
+      - "+.android.com"
+      - "+.xn--ngstr-lra8j.com"
+      - "+.googlevideo.com"
+      - "+.youtube.com"
+      - "+.ytimg.com"
+      - "+.facebook.com"
+      - "+.instagram.com"
+      - "+.x.com"
+      - "+.twitter.com"
+      - "+.telegram.org"
+    ipcidr:
+      - 240.0.0.0/4

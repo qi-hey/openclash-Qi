@@ -16,6 +16,10 @@ lags behind.
   use Google CDN domains such as `dl.google.com` and `gvt*.com`.
 - Prefer US, Japan, and Singapore groups for AI policies because account and API
   services are more sensitive to region quality than normal browsing.
+- Use country-level `url-test` groups for automatic switching. The top
+  `♻️ 自动选择` group is a selector over those region groups, so Japan,
+  Singapore, US, Hong Kong, and other regions do not get mixed into one Smart
+  latency pool.
 
 ## AI Services
 

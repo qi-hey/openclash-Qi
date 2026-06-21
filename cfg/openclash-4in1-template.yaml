@@ -1,0 +1,1071 @@
+mixed-port: 7890
+redir-port: 7892
+tproxy-port: 7895
+allow-lan: true
+bind-address: '*'
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+external-controller: 127.0.0.1:9090
+profile:
+  store-selected: true
+  store-fake-ip: true
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geox-url:
+  geoip: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+  geosite: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+  mmdb: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
+sniffer:
+  enable: true
+  sniff:
+    TLS:
+      ports:
+      - 443
+      - 8443
+    HTTP:
+      ports:
+      - 80
+      - 8080-8880
+      override-destination: true
+    QUIC:
+      ports:
+      - 443
+      - 8443
+  skip-domain:
+  - Mijia Cloud
+  - dlg.io.mi.com
+  - +.push.apple.com
+  - +.googlevideo.com
+tun:
+  enable: true
+  stack: mixed
+  mtu: 1492
+  dns-hijack:
+  - any:53
+  - tcp://any:53
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  cache-algorithm: arc
+  ipv6: false
+  prefer-h3: false
+  use-hosts: true
+  use-system-hosts: true
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+  - '*.lan'
+  - '*.local'
+  - +.localdomain
+  - localhost.ptlogin2.qq.com
+  - time.windows.com
+  - time.apple.com
+  - time.android.com
+  - +.googleapis.cn
+  - +.xn--ngstr-lra8j.com
+  - +.ntp.org.cn
+  - +.pool.ntp.org
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  - 8.8.8.8
+  nameserver-policy:
+    geosite:private,cn,apple-cn,microsoft@cn,steam@cn:
+    - 223.5.5.5
+    - 119.29.29.29
+    +.cn:
+    - 223.5.5.5
+    - 119.29.29.29
+    +.中国:
+    - 223.5.5.5
+    - 119.29.29.29
+    +.公司:
+    - 223.5.5.5
+    - 119.29.29.29
+    +.网络:
+    - 223.5.5.5
+    - 119.29.29.29
+    +.openai.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.chatgpt.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.anthropic.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.claude.ai:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.google.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.googleapis.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.googleapis.cn:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.gstatic.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.gvt1.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.gvt2.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.gvt3.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.googleusercontent.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.ggpht.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.android.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    +.xn--ngstr-lra8j.com:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+    geosite:geolocation-!cn:
+    - https://1.1.1.1/dns-query#🚀 手动选择
+    - https://dns.google/dns-query#🚀 手动选择
+  nameserver:
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  - https://1.1.1.1/dns-query#🚀 手动选择
+  - https://dns.google/dns-query#🚀 手动选择
+  fallback:
+  - https://1.1.1.1/dns-query#🚀 手动选择
+  - https://dns.google/dns-query#🚀 手动选择
+  proxy-server-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - 1.1.1.1
+  - 8.8.8.8
+  direct-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+  direct-nameserver-follow-policy: true
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+    - gfw
+    domain:
+    - +.openai.com
+    - +.chatgpt.com
+    - +.anthropic.com
+    - +.claude.ai
+    - +.google.com
+    - +.googleapis.com
+    - +.googleapis.cn
+    - +.gstatic.com
+    - +.gvt1.com
+    - +.gvt2.com
+    - +.gvt3.com
+    - +.googleusercontent.com
+    - +.ggpht.com
+    - +.android.com
+    - +.xn--ngstr-lra8j.com
+    - +.googlevideo.com
+    - +.youtube.com
+    - +.ytimg.com
+    - +.facebook.com
+    - +.instagram.com
+    - +.x.com
+    - +.twitter.com
+    - +.telegram.org
+    ipcidr:
+    - 240.0.0.0/4
+subscription-userinfo: ""
+proxy-providers:
+  sub1:
+    type: http
+    url: "https://example.com/your-subscription-1.yaml"
+    path: ./proxy_provider/sub1.yaml
+    interval: 86400
+    header:
+      User-Agent:
+      - clash.meta
+    health-check:
+      enable: true
+      url: https://cp.cloudflare.com/generate_204
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      additional-prefix: '[S1] '
+  sub2:
+    type: http
+    url: "https://example.com/your-subscription-2.yaml"
+    path: ./proxy_provider/sub2.yaml
+    interval: 86400
+    header:
+      User-Agent:
+      - clash.meta
+    health-check:
+      enable: true
+      url: https://cp.cloudflare.com/generate_204
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      additional-prefix: '[S2] '
+  sub3:
+    type: http
+    url: "https://example.com/your-subscription-3.yaml"
+    path: ./proxy_provider/sub3.yaml
+    interval: 86400
+    header:
+      User-Agent:
+      - clash.meta
+    health-check:
+      enable: true
+      url: https://cp.cloudflare.com/generate_204
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      additional-prefix: '[S3] '
+  sub4:
+    type: http
+    url: "https://example.com/your-sanjose-subscription.yaml"
+    path: ./proxy_provider/sub4.yaml
+    interval: 86400
+    header:
+      User-Agent:
+      - clash.meta
+    health-check:
+      enable: true
+      url: https://cp.cloudflare.com/generate_204
+      interval: 300
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      additional-prefix: '[S4] '
+rule-providers:
+  custom_direct_domain:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Direct_Domain.yaml
+    path: ./rule_provider/custom_direct_domain.yaml
+    interval: 28800
+  custom_direct_classical_ip:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Direct_Classical_IP.yaml
+    path: ./rule_provider/custom_direct_classical_ip.yaml
+    interval: 28800
+  custom_proxy_domain:
+    type: http
+    behavior: domain
+    format: yaml
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Proxy_Domain.yaml
+    path: ./rule_provider/custom_proxy_domain.yaml
+    interval: 28800
+  custom_proxy_classical_ip:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Proxy_Classical_IP.yaml
+    path: ./rule_provider/custom_proxy_classical_ip.yaml
+    interval: 28800
+  steam_cdn_classical:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Steam_CDN_Classical.yaml
+    path: ./rule_provider/steam_cdn_classical.yaml
+    interval: 28800
+  custom_port_direct:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://api.asailor.org/Custom_OpenClash_Rules/main/rule/Custom_Port_Direct.yaml
+    path: ./rule_provider/custom_port_direct.yaml
+    interval: 28800
+proxy-groups:
+- name: 🚀 手动选择
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: ♻️ 自动选择
+  type: select
+  proxies:
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 💬 即时通讯
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🌐 社交媒体
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🚀 GitHub
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 美国圣何塞
+  type: select
+  use:
+  - sub4
+  filter: .*
+- name: 🤖 ChatGPT
+  type: select
+  proxies:
+  - 美国圣何塞
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇭🇰 香港节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+- name: 🤖 Copilot
+  type: select
+  proxies:
+  - 美国圣何塞
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇭🇰 香港节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  - 🎯 全球直连
+- name: 🤖 AI服务
+  type: select
+  proxies:
+  - 美国圣何塞
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇭🇰 香港节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+- name: 🎶 TikTok
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 📹 YouTube
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🎥 Netflix
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🎥 DisneyPlus
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🎥 HBO
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🎥 PrimeVideo
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🎥 AppleTV+
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🎥 Emby
+  type: select
+  proxies:
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  - 🎯 全球直连
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: .*
+- name: 🎻 Spotify
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 📺 Bahamut
+  type: select
+  proxies:
+  - 🇼🇸 台湾节点
+  - 🚀 手动选择
+  - 🎯 全球直连
+- name: 🌎 国外媒体
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+- name: 🛒 国外电商
+  type: select
+  proxies:
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  - 🎯 全球直连
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: .*
+- name: 📢 谷歌FCM
+  type: select
+  proxies:
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  - 🎯 全球直连
+- name: 🛒 Google Play
+  type: select
+  proxies:
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇭🇰 香港节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  - 🎯 全球直连
+- name: 🇬 谷歌服务
+  type: select
+  proxies:
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  - 🎯 全球直连
+- name: 🍎 苹果服务
+  type: select
+  proxies:
+  - 🎯 全球直连
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+- name: Ⓜ️ 微软服务
+  type: select
+  proxies:
+  - 🎯 全球直连
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+- name: 🎮 游戏平台
+  type: select
+  proxies:
+  - 🎯 全球直连
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+- name: 🎮 Steam
+  type: select
+  proxies:
+  - 🎯 全球直连
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: .*
+- name: 🚀 测速工具
+  type: select
+  proxies:
+  - 🎯 全球直连
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: .*
+- name: 🐟 漏网之鱼
+  type: select
+  proxies:
+  - 🇭🇰 香港节点
+  - 🇺🇸 美国节点
+  - 🇯🇵 日本节点
+  - 🇸🇬 新加坡节点
+  - 🇼🇸 台湾节点
+  - 🇰🇷 韩国节点
+  - 🇨🇦 加拿大节点
+  - 🇬🇧 英国节点
+  - 🇫🇷 法国节点
+  - 🇩🇪 德国节点
+  - 🇳🇱 荷兰节点
+  - 🇹🇷 土耳其节点
+  - 🌐 其他地区
+  - 🚀 手动选择
+  - ♻️ 自动选择
+  - 🎯 全球直连
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: .*
+- name: 🔒 非标端口
+  type: select
+  proxies:
+  - 🐟 漏网之鱼
+  - 🎯 全球直连
+- name: 🇭🇰 香港节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (港|HK|hk|Hong Kong|HongKong|hongkong|深港)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇺🇸 美国节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇯🇵 日本节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|🇯🇵)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇸🇬 新加坡节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (新加坡|坡|狮城|SG|Singapore)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇼🇸 台湾节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (台|新北|彰化|TW|Taiwan)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇰🇷 韩国节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (KR|Korea|KOR|首尔|韩|韓)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇨🇦 加拿大节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (加拿大|Canada|渥太华|温哥华|卡尔加里)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇬🇧 英国节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (英国|Great Britain)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇫🇷 法国节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (法国|France|巴黎)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇩🇪 德国节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (德国|Germany|柏林|法兰克福)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇳🇱 荷兰节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (荷兰|Netherlands|阿姆斯特丹)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🇹🇷 土耳其节点
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (土耳其|Turkey|Türkiye)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🌐 其他地区
+  type: url-test
+  use:
+  - sub1
+  - sub2
+  - sub3
+  filter: (^(?!.*(港|HK|hk|Hong Kong|HongKong|hongkong|深港|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States|UnitedStates|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan|🇯🇵|新加坡|坡|狮城|SG|Singapore|台|新北|彰化|TW|Taiwan|KR|Korea|KOR|首尔|韩|韓|加拿大|Canada|渥太华|温哥华|卡尔加里|英国|Great
+    Britain|法国|France|巴黎|德国|Germany|柏林|法兰克福|荷兰|Netherlands|阿姆斯特丹|土耳其|Turkey|Türkiye)).*)
+  url: https://cp.cloudflare.com/generate_204
+  interval: 300
+  tolerance: 50
+- name: 🎯 全球直连
+  type: select
+  proxies:
+  - DIRECT
+rules:
+- GEOSITE,private,🎯 全球直连
+- GEOIP,private,🎯 全球直连,no-resolve
+- RULE-SET,custom_direct_domain,🎯 全球直连
+- RULE-SET,custom_direct_classical_ip,🎯 全球直连
+- RULE-SET,custom_proxy_domain,🚀 手动选择
+- RULE-SET,custom_proxy_classical_ip,🚀 手动选择
+- DOMAIN-SUFFIX,play.google.com,🛒 Google Play
+- DOMAIN-SUFFIX,play.googleapis.com,🛒 Google Play
+- DOMAIN-SUFFIX,play-fe.googleapis.com,🛒 Google Play
+- DOMAIN-SUFFIX,android.clients.google.com,🛒 Google Play
+- DOMAIN-SUFFIX,play-lh.googleusercontent.com,🛒 Google Play
+- DOMAIN-SUFFIX,ggpht.com,🛒 Google Play
+- DOMAIN-SUFFIX,dl.google.com,🛒 Google Play
+- DOMAIN-SUFFIX,gvt1.com,🛒 Google Play
+- DOMAIN-SUFFIX,gvt2.com,🛒 Google Play
+- DOMAIN-SUFFIX,gvt3.com,🛒 Google Play
+- GEOSITE,google-cn,🎯 全球直连
+- GEOSITE,category-games@cn,🎯 全球直连
+- RULE-SET,steam_cdn_classical,🎯 全球直连
+- GEOSITE,category-game-platforms-download,🎯 全球直连
+- GEOSITE,category-public-tracker,🎯 全球直连
+- GEOSITE,category-communication,💬 即时通讯
+- GEOSITE,category-social-media-!cn,🌐 社交媒体
+- DOMAIN-SUFFIX,chatgpt.com,🤖 ChatGPT
+- DOMAIN-SUFFIX,chat.com,🤖 ChatGPT
+- DOMAIN-SUFFIX,openai.com,🤖 ChatGPT
+- DOMAIN-SUFFIX,oaistatic.com,🤖 ChatGPT
+- DOMAIN-SUFFIX,oaiusercontent.com,🤖 ChatGPT
+- DOMAIN-SUFFIX,oaistatsig.com,🤖 ChatGPT
+- DOMAIN-SUFFIX,sora.com,🤖 ChatGPT
+- DOMAIN-SUFFIX,githubcopilot.com,🤖 Copilot
+- DOMAIN,copilot-proxy.githubusercontent.com,🤖 Copilot
+- DOMAIN-SUFFIX,copilot.microsoft.com,🤖 Copilot
+- DOMAIN-SUFFIX,claude.ai,🤖 AI服务
+- DOMAIN-SUFFIX,claude.com,🤖 AI服务
+- DOMAIN-SUFFIX,anthropic.com,🤖 AI服务
+- DOMAIN-SUFFIX,claudeusercontent.com,🤖 AI服务
+- DOMAIN-SUFFIX,claudemcpcontent.com,🤖 AI服务
+- DOMAIN-SUFFIX,claudemcpclient.com,🤖 AI服务
+- DOMAIN-SUFFIX,gemini.google.com,🤖 AI服务
+- DOMAIN-SUFFIX,aistudio.google.com,🤖 AI服务
+- DOMAIN-SUFFIX,ai.google.dev,🤖 AI服务
+- DOMAIN-SUFFIX,generativelanguage.googleapis.com,🤖 AI服务
+- DOMAIN-SUFFIX,generativeai.google,🤖 AI服务
+- DOMAIN-SUFFIX,makersuite.google.com,🤖 AI服务
+- DOMAIN-SUFFIX,gemini.gstatic.com,🤖 AI服务
+- DOMAIN-SUFFIX,notebooklm.google.com,🤖 AI服务
+- DOMAIN-SUFFIX,jules.google,🤖 AI服务
+- DOMAIN-SUFFIX,stitch.withgoogle.com,🤖 AI服务
+- DOMAIN-SUFFIX,pi.ai,🤖 AI服务
+- DOMAIN-SUFFIX,heypi.com,🤖 AI服务
+- DOMAIN-SUFFIX,inflection.ai,🤖 AI服务
+- DOMAIN-SUFFIX,nousresearch.com,🤖 AI服务
+- DOMAIN-SUFFIX,openrouter.ai,🤖 AI服务
+- GEOSITE,openai,🤖 ChatGPT
+- GEOSITE,bing,🤖 Copilot
+- GEOSITE,category-ai-!cn,🤖 AI服务
+- GEOSITE,github,🚀 GitHub
+- GEOSITE,category-speedtest,🚀 测速工具
+- GEOSITE,youtube,📹 YouTube
+- GEOSITE,apple-tvplus,🎥 AppleTV+
+- GEOSITE,apple,🍎 苹果服务
+- GEOSITE,microsoft,Ⓜ️ 微软服务
+- GEOSITE,googlefcm,📢 谷歌FCM
+- GEOSITE,google,🇬 谷歌服务
+- GEOSITE,tiktok,🎶 TikTok
+- GEOSITE,netflix,🎥 Netflix
+- GEOSITE,disney,🎥 DisneyPlus
+- GEOSITE,hbo,🎥 HBO
+- GEOSITE,primevideo,🎥 PrimeVideo
+- GEOSITE,category-emby,🎥 Emby
+- GEOSITE,spotify,🎻 Spotify
+- GEOSITE,bahamut,📺 Bahamut
+- GEOSITE,steam,🎮 Steam
+- GEOSITE,category-games,🎮 游戏平台
+- GEOSITE,category-entertainment,🌎 国外媒体
+- GEOSITE,category-ecommerce,🛒 国外电商
+- GEOSITE,gfw,🚀 手动选择
+- GEOIP,telegram,💬 即时通讯,no-resolve
+- GEOIP,twitter,🌐 社交媒体,no-resolve
+- GEOIP,facebook,🌐 社交媒体,no-resolve
+- GEOIP,google,🇬 谷歌服务,no-resolve
+- GEOIP,netflix,🎥 Netflix,no-resolve
+- GEOSITE,cn,🎯 全球直连
+- GEOIP,cn,🎯 全球直连,no-resolve
+- RULE-SET,custom_port_direct,🔒 非标端口
+- MATCH,🐟 漏网之鱼
